@@ -1,0 +1,36 @@
+from tkinter import *
+
+START_BALANCE = 0
+START_REVENUE = 2000
+
+class Gamelogic:
+    def __init__(self):
+        self.balance = START_BALANCE
+        self.revenue = START_REVENUE
+        
+    def increment_balance(self):
+        self.balance = self.balance + self.revenue
+#       label_balance 
+        
+        
+class Application:
+    def __init__(self, root):
+        self.root = root
+        root.title('KADAMO')
+        background = PhotoImage(file="hintergrund.gif")
+        self.background_image = Label(master=root, image=background)
+        self.background_image.pack()
+        #label_balance = Label(master = root, text = gamelogic.balance, bg = "blue")
+        #label_balance.place(x = 1420, y = 0, width = 500, height = 1080)
+        
+    def game_tick(self):
+        gamelogic.increment_balance()
+        self.root.after(1000, self.game_tick)
+        
+
+root = Tk()
+gamelogic = Gamelogic()
+
+Application(root)
+
+root.mainloop()
